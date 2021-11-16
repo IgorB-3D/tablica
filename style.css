@@ -11,7 +11,7 @@ body {
 	color: white;
 	margin: 0;
 	font-family: 'Manrope', sans-serif;
-	overflow: hidden;
+	overflow-x: hidden;
 }
 
 input {
@@ -78,6 +78,7 @@ input {
 	opacity: 0.1;
 	z-index: -100;
 	pointer-events: none;
+	position: fixed;
 }
 
 .card {
@@ -147,6 +148,15 @@ input {
 .smallsquare {
 	width: 50px;
 	height: 50px;
+}
+
+.fullwidth {
+	width: 100%;
+	resize: none;
+}
+
+.font {
+	font-family: 'Manrope', sans-serif;
 }
 
 .nobg {
