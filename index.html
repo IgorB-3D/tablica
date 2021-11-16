@@ -14,17 +14,18 @@
 <body>
 	<div id="app" class="full">
 		<div class="full bg absolute"></div>
-		<div class="full flex center hide" id="pg0">
+		<div class="full flex center page">
 			<div>
 				<h1 class="centertext">Tablica</h1>
 				<div class="card border padded block darkfill">
-					<input type="button" value="Nowy projekt" class="block border fill padded bold wide">
+					<input type="button" value="Nowy projekt" class="block border fill padded bold wide"
+						onclick="newProject()">
 					<input type="button" value="Otwórz z pliku" class="block clear padded bold wide white">
 				</div>
 			</div>
 		</div>
 
-		<div class="full flex center" id="pg1">
+		<div class="full flex center hide page">
 			<div class="block start">
 				<div class="column">
 					<p class="bold bigtext">Do zrobienia</p>

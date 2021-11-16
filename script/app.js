@@ -1,5 +1,6 @@
 const root = document.getElementById('app')
 const columns = document.querySelectorAll('.cardcolumn')
+const pages = document.querySelectorAll('.page')
 
 /*
 <div class="panel block border darkfill smallpad">
@@ -8,13 +9,18 @@ const columns = document.querySelectorAll('.cardcolumn')
 </div>
 */
 
+function newProject() {
+    pages[0].classList.add('hide')
+    pages[1].classList.remove('hide')
+}
+
 function newCard(before) {
     let card = document.createElement("div");
     card.classList.add("panel", "block", "border", "darkfill", "smallpad", "spacetop")
 
-    let cardTitle = document.createElement("p")
-    cardTitle.classList.add("bold", "med", "marginclear", "spacetop")
-    cardTitle.innerHTML = "Nowa karta"
+    let cardTitle = document.createElement("input")
+    cardTitle.classList.add("clear", "white", "bold", "med", "marginclear", "spacetop")
+    cardTitle.value = "Nowa karta"
     card.appendChild(cardTitle)
 
     let cardText = document.createElement("p")
