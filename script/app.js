@@ -46,8 +46,9 @@ document.addEventListener('mousemove', (ev) => {
 })
 
 function newProject() {
-    pages[0].classList.add('hide')
+    pages[0].classList.add('out')
     pages[1].classList.remove('hide')
+    pages[1].classList.add('in')
 }
 
 function newCard(before) {
