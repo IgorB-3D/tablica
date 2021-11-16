@@ -1,5 +1,4 @@
-:root
-{
+:root {
 	--accent: #3DFFA2;
 	--rnd: 16px;
 	--bg: #1E1E1E;
@@ -7,82 +6,73 @@
 	font-size: 28px;
 }
 
-body
-{
+body {
 	background: var(--bg);
 	color: white;
 	margin: 0;
 	font-family: 'Manrope', sans-serif;
+	overflow: hidden;
 }
 
-input
-{
+input {
 	font-size: 0.8em;
 	cursor: pointer;
 }
 
-.white
-{
+.white {
 	color: white;
 }
 
-.full
-{
+.full {
 	width: 100vw;
 	height: 100vh;
 }
 
-.flex
-{
+.flex {
 	display: flex;
 }
 
-.border
-{
+.border {
 	border: var(--border) solid var(--accent);
 	border-radius: var(--rnd);
 }
 
-.fill
-{
+.fill {
 	background: var(--accent);
 }
 
-.darkfill
-{
+.darkfill {
 	background: var(--bg);
 }
 
-.padded
-{
+.padded {
 	padding: 15px;
 }
 
-.bold
-{
+.bold {
 	font-weight: bold;
 }
 
-.center
-{
+.bigtext {
+	font-size: 1.5em;
+}
+
+.center {
 	justify-content: center;
 	align-items: center;
 }
 
-.absolute
-{
+.absolute {
 	position: absolute;
 	top: 0;
 	left: 0;
 }
 
-.block
-{
+.block {
 	display: block;
 }
 
-.bg
-{
+.bg {
 	background-image: url("img/bg.png");
 	background-size: cover;
 	opacity: 0.1;
@@ -90,30 +80,75 @@ input
 	pointer-events: none;
 }
 
-.card
-{
-	width: 300px;
-	display: grid;
-	place-items: center;
+.card {
+	width: 10vw;
 }
 
-.clear
-{
+.clear {
 	background: none;
 	border: none;
 }
 
-.centertext
-{
+.centertext {
 	text-align: center;
 }
 
-.wide
-{
+.wide {
 	width: 100%;
 }
 
-.hide
-{
+.hide {
 	display: none;
+}
+
+.column {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.cardcolumn {
+	display: grid;
+	place-items: center;
+}
+
+.space {
+	margin-left: 20vw;
+}
+
+.start {
+	padding: 50px;
+	align-self: flex-start;
+}
+
+.smallpad {
+	padding: 5px 20px 20px 20px;
+}
+
+.med {
+	font-size: 0.9em;
+}
+
+.marginclear {
+	margin: 0;
+}
+
+.spacetop {
+	margin-top: 10px;
+}
+
+.sml {
+	font-size: 0.7em;
+}
+
+.round {
+	border-radius: 500px;
+}
+
+.smallsquare {
+	width: 50px;
+	height: 50px;
+}
+
+.nobg {
+	background: none;
 }

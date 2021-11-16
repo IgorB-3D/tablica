@@ -1,28 +1,57 @@
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
-		<title>Document</title>
-		<link rel="stylesheet" href="style.css">
-	</head>
-	<body>
-		<div id="app" class="full">
-			<div class="full bg absolute"></div>
-			<div class="full flex center hide" id="pg0">
-				<div>
-					<h1 class="centertext">Tablica</h1>
-					<div class="card border padded block darkfill">
-						<input type="button" value="Nowy projekt" class="block border fill padded bold wide">
-						<input type="button" value="Otwórz z pliku" class="block clear padded bold wide white">
-					</div>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div id="app" class="full">
+		<div class="full bg absolute"></div>
+		<div class="full flex center hide" id="pg0">
+			<div>
+				<h1 class="centertext">Tablica</h1>
+				<div class="card border padded block darkfill">
+					<input type="button" value="Nowy projekt" class="block border fill padded bold wide">
+					<input type="button" value="Otwórz z pliku" class="block clear padded bold wide white">
 				</div>
 			</div>
 		</div>
 
-		<script src="script/app.js"></script>
-	</body>
+		<div class="full flex center" id="pg1">
+			<div class="block start">
+				<div class="column">
+					<p class="bold bigtext">Do zrobienia</p>
+					<div class="cardcolumn">
+						<input type="button" value="+" class="spacetop border nobg white round bold smallsquare"
+							onclick="newCard(this)">
+					</div>
+				</div>
+				<div class="column space">
+					<p class="bold bigtext">W toku</p>
+					<div class="cardcolumn">
+						<input type="button" value="+" class="spacetop border nobg white round bold smallsquare"
+							onclick="newCard(this)">
+					</div>
+				</div>
+				<div class="column space">
+					<p class="bold bigtext">Gotowe</p>
+					<div class="cardcolumn">
+						<input type="button" value="+" class="spacetop border nobg white round bold smallsquare"
+							onclick="newCard(this)">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="script/app.js"></script>
+</body>
+
 </html>
