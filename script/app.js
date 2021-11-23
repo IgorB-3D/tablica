@@ -23,11 +23,13 @@ function dragBegin(card) {
     }
     card.style.position = 'absolute'
     dragUpdate()
+	card.classList.add('pop')
 }
 
 function dragEnd(card) {
     card.style.position = 'initial'
     drag.card = null
+	card.classList.remove('pop')
 }
 
 function dragUpdate(mv) {
@@ -35,6 +37,14 @@ function dragUpdate(mv) {
         return;
     drag.card.style.top = `${drag.mPos.y - drag.mDelta.y}px`
     drag.card.style.left = `${drag.mPos.x - drag.mDelta.x}px`
+}
+
+function clearSelection()
+{
+	let selection = window.getSelection ? window.getSelection() : document.selection
+	if (selection) {
+		sel.removeAllRanges();
+	}
 }
 
 document.addEventListener('mousemove', (ev) => {
@@ -65,7 +75,10 @@ function newCard(before) {
     cardText.innerHTML = "Opis nowej karty"
     card.appendChild(cardText)
 
-    card.addEventListener('mousedown', () => dragBegin(card))
+    card.addEventListener('mousedown', (e) => {
+		if(e.target == card)
+			dragBegin(card)
+	})
     document.addEventListener('mouseup', () => dragEnd(card))
 
     before.parentNode.prepend(card)
