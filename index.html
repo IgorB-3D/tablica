@@ -25,8 +25,9 @@
 			</div>
 		</div>
 
-		<div class="full flex center hide page">
-			<div class="block start">
+		<div class="full flex center page hide">
+			<input type="button" class="absolute clear med set white nobg bold padsmall " value="⚙️" onclick="toggleMenu()">
+			<div class="block">
 				<div class="column">
 					<p class="bold bigtext">Do zrobienia</p>
 					<div class="cardcolumn">
@@ -48,6 +49,23 @@
 							onclick="newCard(this)">
 					</div>
 				</div>
+			</div>
+		</div>
+
+		<div class="full flex center page absolute dim hide">
+			<div class="card border darkfill padded">
+				<input type="button" value="GitHub" class="white bold marginclear nobg clear block">
+				<input type="button" value="Zapisz" class="white bold marginclear transparent nobg clear block" onclick="downloadData()">
+				<input type="button" value="Wyjdź do menu" class="white bold marginclear transparent nobg clear block" onclick="hidePanel()">
+				<input type="button" value="Zamknij" class="white bold marginclear transparent nobg clear" onclick="toggleMenu()">
+			</div>
+			<div class="wideCard card border darkfill padded smallspace">
+				<p class="white bold marginclear">Repozytorium</p>
+				<input type="text" placeholder="GitHub repo" id="plus" class="sml border padsmall fill round marginclear bold spacetop"
+				onclick="">
+				<p class="white bold marginclear spacetop">Członkowie zespołu</p>
+				<input type="button" value="Dodaj" id="plus" class="sml border padsmall fill round marginclear bold spacetop"
+				onclick="">
 			</div>
 		</div>
 	</div>
