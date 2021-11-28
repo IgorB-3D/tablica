@@ -95,20 +95,22 @@ class Card
 			data.Flush()
 		})
 
+		let cmt = () => {
+			GetCommit(data.repo, commitText.value, (res) => {
+				let content = res["commit"]["message"].replace(/(\r\n|\n|\r)/gm, "")
+				commitUrl.href = res["html_url"]
+				commitUrl.innerText = `"${content.substring(0, 30) + "..."}"`
+			})
+		}
+
 		commitText.addEventListener('change', () => {
 			commitUrl.innerText = ''
-			GetCommit(data.repo, commitText.value, (res) => {
-				commitUrl.href = res["html_url"]
-				commitUrl.innerText = res["commit"]["message"].replace(/(\r\n|\n|\r)/gm, "")
-			})
+			cmt()
 		})
 
 		if(commitText.value && commitText.value.length != 0)
 		{
-			GetCommit(data.repo, commitText.value, (res) => {
-				commitUrl.href = res["html_url"]
-				commitUrl.innerText = res["commit"]["message"].replace(/(\r\n|\n|\r)/gm, "")
-			})
+			cmt()
 		}
 
 		commitWrapper.appendChild(commitText)

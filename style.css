@@ -209,7 +209,10 @@ input {
 	max-width: 50%;
 	width: 50%;
 	margin-left: 5px;
+	font-style: italic;
 	font-weight: bold;
+	text-decoration: none;
+	opacity: 0.5;
 }
 
 .commitwrapper
