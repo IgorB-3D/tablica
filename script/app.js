@@ -1,9 +1,11 @@
 const root = document.getElementById('app')
 const columns = document.querySelectorAll('.cardcolumn')
 const pages = document.querySelectorAll('.page')
+const setTabs = document.querySelectorAll('.settingstab')
 
 const drag = {
     card: null,
+	cardDef: null,
     mPos: null,
     mDelta: null,
 	closestColumn: 0
@@ -25,10 +27,14 @@ if(data != null)
 
 function reconstruct()
 {
+	for(let i = 0; i < columns.length; i++)
+	{
+		let children = [...columns[i].getElementsByClassName('panel')]
+		children.forEach(x => x.remove())
+	}
 	for(let i = 0; i < data.cards.length; i++)
 	{
 		let card = newCard(null, data.cards[i])
-		//columns[data.cards[i].columnIndex].prepend(card)
 	}
 }
 
@@ -60,8 +66,9 @@ function getColumnIdx(column)
 	return 0;
 }
 
-function dragBegin(card) {
+function dragBegin(card, cardDef) {
     drag.card = card
+	drag.cardDef = cardDef
     drag.mDelta = {
         x: drag.mPos.x - card.getBoundingClientRect().left,
         y: drag.mPos.y - card.getBoundingClientRect().top
@@ -76,6 +83,9 @@ function dragEnd() {
 		return;
 	if(drag.closestColumn)
 		drag.closestColumn.prepend(drag.card)
+
+	drag.cardDef.columnIndex = getColumnIdx(drag.closestColumn)
+
 	drag.card.style.position = 'initial'
 	drag.card.classList.remove('pop')
 	drag.card = null
@@ -118,7 +128,10 @@ document.addEventListener('mousemove', (ev) => {
 
 function newProject()
 {
+	sessionStorage.clear()
 	data = dataDef()
+	flushData()
+	reconstruct()
 	showPanel()
 }
 
@@ -165,7 +178,10 @@ function newCard(before, def) {
     cardTitle.classList.add("clear", "white", "bold", "med", "marginclear", "spacetop", "block")
     cardTitle.value = def.title
 	cardTitle.addEventListener('change', () => {
-		data.cards[index].title = cardTitle.value
+		data.cards.forEach(x => {
+			if(x == def)
+				x.title = cardTitle.value
+		})
 		flushData()
 	})
     card.appendChild(cardTitle)
@@ -174,24 +190,30 @@ function newCard(before, def) {
     cardText.classList.add("sml", "card", "marginclear", "spacetop", "fullwidth", "clear", "font", "white")
     cardText.innerHTML = def.description
 	cardText.addEventListener('change', () => {
-		data.cards[index].description = cardText.value
+		data.cards.forEach(x => {
+			if(x == def)
+				x.description = cardText.value
+		})
 		flushData()
 	})
     card.appendChild(cardText)
 
 	let commitText = document.createElement("input")
-	commitText.classList.add("clear", "green", "sml", "med", "marginclear", "block")
+	commitText.classList.add("gitbg", "clear", "white", "marginclear", "block")
 	commitText.placeholder = 'Commit SHA'
 	commitText.value = def.sha
 	commitText.addEventListener('change', () => {
-		data.cards[index].sha = commitText.value
+		data.cards.forEach(x => {
+			if(x == def)
+				x.sha = commitText.value
+		})
 		flushData()
 	})
 	card.appendChild(commitText)
 
     card.addEventListener('mousedown', (e) => {
 		if(e.target == card)
-			dragBegin(card)
+			dragBegin(card, def)
 	})
     document.addEventListener('mouseup', () => dragEnd(card))
 
@@ -223,6 +245,16 @@ function downloadData()
 	document.body.appendChild(dummy)
 	dummy.click()
 	document.body.removeChild(dummy)
+}
+
+function setTab(n)
+{
+	for(let i = 0; i < setTabs.length; i++)
+	{
+		setTabs[i].style.display = 'none'
+		if(i == n)
+			setTabs[i].style.display = 'block'
+	}
 }
 
 function tryLoadData()

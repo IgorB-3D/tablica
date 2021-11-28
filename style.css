@@ -86,7 +86,38 @@ input {
 }
 
 .card {
-	width: 10vw;
+	width: max(10vw, 300px);
+}
+
+.navpanel
+{
+	width: max(200px, 10vw);
+	overflow: hidden;
+}
+
+.navpanel input
+{
+	width: 100%;
+	display: block;
+	text-align: left;
+	padding: 10px;
+	border: none;
+	border-top: 2px solid #3DFFA2;
+	color: white;
+	background: none;
+	transition: background 0.3s, font-weight 0.3s, letter-spacing 0.3s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+
+.navpanel input:hover
+{
+	letter-spacing: 0.05em;
+	background: #00000022;
+	font-weight: bold;
+}
+
+.navpanel input:nth-child(1)
+{
+	border: none;
 }
 
 .clear {
@@ -98,13 +129,36 @@ input {
 	text-align: center;
 }
 
+.gitbg
+{
+	background: #ae00ff;
+	border-radius: 15px;
+	padding: 5px;
+	width: 70%;
+	transition: background 0.2s;
+	font-size: 0.5em;
+	font-weight: bold;
+	font-style: italic;
+}
+
+.gitbg:placeholder-shown, .gitbg:focus
+{
+	background: none;
+	font-style: normal;
+}
+
+.gitbg::placeholder
+{
+	color: white;
+}
+
 .wide {
 	width: 100%;
 }
 
 .wideCard
 {
-	width: min(300px, max(20vw, 200px));
+	width: 300px;
 }
 
 .hide {
@@ -226,6 +280,12 @@ input {
 
 .set{
 	left: calc(100vw - 55px);
+}
+
+::placeholder 
+{
+	color: black;
+	opacity: 0.8;
 }
 
 @keyframes pop {

@@ -53,19 +53,26 @@
 		</div>
 
 		<div class="full flex center page absolute dim hide">
-			<div class="card border darkfill padded">
-				<input type="button" value="GitHub" class="white bold marginclear nobg clear block">
-				<input type="button" value="Zapisz" class="white bold marginclear transparent nobg clear block" onclick="downloadData()">
-				<input type="button" value="Wyjdź do menu" class="white bold marginclear transparent nobg clear block" onclick="hidePanel()">
-				<input type="button" value="Zamknij" class="white bold marginclear transparent nobg clear" onclick="toggleMenu()">
+			<div class="navpanel darkfill border">
+				<input type="button" value="GitHub" onclick="setTab(0)">
+				<input type="button" value="Eksport" onclick="setTab(1)">
+				<input type="button" value="Wyjdź do menu" onclick="hidePanel()">
+				<input type="button" value="Wróć" onclick="toggleMenu()">
 			</div>
-			<div class="wideCard card border darkfill padded smallspace">
+			<div class="wideCard border darkfill padded smallspace settingstab">
 				<p class="white bold marginclear">Repozytorium</p>
-				<input type="text" placeholder="GitHub repo" id="plus" class="sml border padsmall fill round marginclear bold spacetop"
-				onclick="">
-				<p class="white bold marginclear spacetop">Członkowie zespołu</p>
-				<input type="button" value="Dodaj" id="plus" class="sml border padsmall fill round marginclear bold spacetop"
-				onclick="">
+				<p class="white sml">
+					Podaj link do repozytorium GitHub, aby karty mogły zostać skojarzone z commitami.
+				</p>
+				<input type="text" placeholder="username/repo" class="sml wide border padsmall fill round marginclear bold spacetop" id="repoDiv">
+			</div>
+			<div class="wideCard border darkfill padded smallspace hide settingstab">
+				<p class="white bold marginclear">Eksport</p>
+				<p class="white sml">
+					Dane w formacie JSON można zapisać do pliku, w celu odtworzenia projektu w nowej sesji.
+				</p>
+				<input type="button" value="Pobierz" class="sml wide border padsmall fill round marginclear bold spacetop"
+				onclick="downloadData()">
 			</div>
 		</div>
 	</div>
