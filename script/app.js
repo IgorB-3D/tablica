@@ -2,6 +2,7 @@ const root = document.getElementById('app')
 const columns = document.querySelectorAll('.cardcolumn')
 const pages = document.querySelectorAll('.page')
 const setTabs = document.querySelectorAll('.settingstab')
+const repoIn = document.querySelector('#repoIn')
 
 const drag = {
     card: null,
@@ -21,6 +22,7 @@ else
 
 if(data != null)
 {
+	repoIn.value = data.repo
 	reconstruct()
 	showPanel()
 }
@@ -261,3 +263,8 @@ function tryLoadData()
 {
 
 }
+
+repoIn.addEventListener('change', () => {
+	data.repo = repoIn.value
+	flushData()
+})
