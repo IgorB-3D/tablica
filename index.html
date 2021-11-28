@@ -52,7 +52,7 @@
 			</div>
 		</div>
 
-		<div class="full flex center page absolute dim hide">
+		<div class="full flex center page absolute dim hide" id="settings">
 			<div class="navpanel darkfill border">
 				<input type="button" value="GitHub" onclick="setTab(0)">
 				<input type="button" value="Eksport" onclick="setTab(1)">
@@ -72,11 +72,15 @@
 					Dane w formacie JSON można zapisać do pliku, w celu odtworzenia projektu w nowej sesji.
 				</p>
 				<input type="button" value="Pobierz" class="sml wide border padsmall fill round marginclear bold spacetop"
-				onclick="downloadData()">
+				onclick="data.Download()">
 			</div>
 		</div>
 	</div>
 
+	<script src="script/data.js"></script>
+	<script src="script/card.js"></script>
+	<script src="script/drag.js"></script>
+	<script src="script/settings.js"></script>
 	<script src="script/app.js"></script>
 </body>
 

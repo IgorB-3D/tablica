@@ -131,7 +131,7 @@ input {
 
 .gitbg
 {
-	background: #ae00ff;
+	background: #3DFFA2;
 	border-radius: 15px;
 	padding: 5px;
 	width: 70%;
@@ -139,12 +139,14 @@ input {
 	font-size: 0.5em;
 	font-weight: bold;
 	font-style: italic;
+	color: black;
 }
 
 .gitbg:placeholder-shown, .gitbg:focus
 {
 	background: none;
 	font-style: normal;
+	color: white;
 }
 
 .gitbg::placeholder

@@ -1,30 +1,17 @@
 const root = document.getElementById('app')
 const columns = document.querySelectorAll('.cardcolumn')
 const pages = document.querySelectorAll('.page')
-const setTabs = document.querySelectorAll('.settingstab')
-const repoIn = document.querySelector('#repoIn')
 
-const drag = {
-    card: null,
-	cardDef: null,
-    mPos: null,
-    mDelta: null,
-	closestColumn: 0
-}
+reload()
 
-let data = null
-let toggle = false
-
-if(!window.sessionStorage.getItem('data'))
-	window.sessionStorage.setItem('data', JSON.stringify(dataDef()))
-else
-	data = JSON.parse(window.sessionStorage.getItem('data'))
-
-if(data != null)
+function reload()
 {
-	repoIn.value = data.repo
-	reconstruct()
-	showPanel()
+	if(data != null)
+	{
+		repoIn.value = data.repo
+		reconstruct()
+		showPanel()
+	}
 }
 
 function reconstruct()
@@ -34,30 +21,9 @@ function reconstruct()
 		let children = [...columns[i].getElementsByClassName('panel')]
 		children.forEach(x => x.remove())
 	}
+
 	for(let i = 0; i < data.cards.length; i++)
-	{
-		let card = newCard(null, data.cards[i])
-	}
-}
-
-function flushData()
-{
-	window.sessionStorage.setItem('data', JSON.stringify(data))
-}
-
-function dataDef()
-{
-	return { cards: [], repo: '' }
-}
-
-function cardDef()
-{
-	return {
-		title: 'Nowa karta',
-		description: 'Opis karty',
-		sha: '',
-		columnIndex: 0
-	}
+		newCard(null, data.cards[i])
 }
 
 function getColumnIdx(column)
@@ -68,71 +34,12 @@ function getColumnIdx(column)
 	return 0;
 }
 
-function dragBegin(card, cardDef) {
-    drag.card = card
-	drag.cardDef = cardDef
-    drag.mDelta = {
-        x: drag.mPos.x - card.getBoundingClientRect().left,
-        y: drag.mPos.y - card.getBoundingClientRect().top
-    }
-    card.style.position = 'absolute'
-    dragUpdate()
-	card.classList.add('pop')
-}
-
-function dragEnd() {
-	if(!drag.card)
-		return;
-	if(drag.closestColumn)
-		drag.closestColumn.prepend(drag.card)
-
-	drag.cardDef.columnIndex = getColumnIdx(drag.closestColumn)
-
-	drag.card.style.position = 'initial'
-	drag.card.classList.remove('pop')
-	drag.card = null
-	flushData()
-}
-
-function dragUpdate(mv) {
-    if (drag.card == null)
-        return;
-	let x = drag.mPos.y - drag.mDelta.y
-	let y = drag.mPos.x - drag.mDelta.x
-
-    drag.card.style.top = `${drag.mPos.y - drag.mDelta.y}px`
-    drag.card.style.left = `${drag.mPos.x - drag.mDelta.x}px`
-
-	drag.closestColumn = columns[0]
-	let closestDistance = Infinity
-	let cRect = drag.card.getBoundingClientRect();
-
-	for(let i = 0; i < columns.length; i++)
-	{
-		let rect = columns[i].getBoundingClientRect();
-		let dist = Math.abs(cRect.left - rect.left)
-
-		if(dist < closestDistance)
-		{
-			closestDistance = dist
-			drag.closestColumn = columns[i]
-		}
-	}
-}
-
-document.addEventListener('mousemove', (ev) => {
-    drag.mPos = {
-        x: ev.x,
-        y: ev.y
-    }
-    dragUpdate()
-})
-
 function newProject()
 {
 	sessionStorage.clear()
-	data = dataDef()
-	flushData()
+	data = new Data()
+	data.Flush()
+	reload()
 	reconstruct()
 	showPanel()
 }
@@ -160,7 +67,7 @@ function newCard(before, def) {
 
 	if(!def)
 	{
-		def = cardDef()
+		def = new Card()
 		def.columnIndex = getColumnIdx(before.parentNode)
 	
 		let index = data.cards.length
@@ -184,7 +91,7 @@ function newCard(before, def) {
 			if(x == def)
 				x.title = cardTitle.value
 		})
-		flushData()
+		data.Flush()
 	})
     card.appendChild(cardTitle)
 
@@ -196,7 +103,7 @@ function newCard(before, def) {
 			if(x == def)
 				x.description = cardText.value
 		})
-		flushData()
+		data.Flush()
 	})
     card.appendChild(cardText)
 
@@ -209,62 +116,19 @@ function newCard(before, def) {
 			if(x == def)
 				x.sha = commitText.value
 		})
-		flushData()
+		data.Flush()
 	})
 	card.appendChild(commitText)
 
     card.addEventListener('mousedown', (e) => {
 		if(e.target == card)
-			dragBegin(card, def)
+			drag.Begin(card, def)
 	})
-    document.addEventListener('mouseup', () => dragEnd(card))
+    document.addEventListener('mouseup', () => drag.End(card))
 
     before.parentNode.prepend(card)
 
-	flushData()
+	data.Flush()
 
 	return card
 }
-
-function toggleMenu()
-{
-	toggle = !toggle
-	if(toggle)
-		pages[2].classList.remove('hide')
-	else
-		pages[2].classList.add('hide')
-}
-
-function downloadData()
-{
-	let json = JSON.stringify(data)
-
-	let dummy = document.createElement('a')
-	dummy.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(json))
-	dummy.setAttribute('download', "karty_dane.json")
-
-	dummy.style.display = 'none'
-	document.body.appendChild(dummy)
-	dummy.click()
-	document.body.removeChild(dummy)
-}
-
-function setTab(n)
-{
-	for(let i = 0; i < setTabs.length; i++)
-	{
-		setTabs[i].style.display = 'none'
-		if(i == n)
-			setTabs[i].style.display = 'block'
-	}
-}
-
-function tryLoadData()
-{
-
-}
-
-repoIn.addEventListener('change', () => {
-	data.repo = repoIn.value
-	flushData()
-})
