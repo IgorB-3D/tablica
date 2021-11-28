@@ -1,12 +1,17 @@
 const settings = document.querySelector('#settings')
 const setTabs = document.querySelectorAll('.settingstab')
 const repoIn = document.querySelector('#repoIn')
+const projectPage = document.querySelectorAll('.page')[1]
 
 let toggle = false
 
 function toggleMenu()
 {
+	if(!projectOpen)
+		return
+
 	toggle = !toggle
+
 	if(toggle)
 		pages[2].classList.remove('hide')
 	else

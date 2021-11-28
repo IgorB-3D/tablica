@@ -215,6 +215,27 @@ input {
 	opacity: 0.5;
 }
 
+input[type="file"]
+{
+    display: none;
+}
+
+.fselect
+{
+	display: block;
+	text-align: center;
+	font-size: 0.5em;
+	width: 100%;
+	cursor: pointer;
+	font-weight: bold;
+	margin-bottom: 5px;
+	border-radius: 30px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background: var(--accent);
+	color: black;
+}
+
 .commitwrapper
 {
 	width: 100%;

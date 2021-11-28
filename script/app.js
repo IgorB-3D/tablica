@@ -2,6 +2,31 @@ const root = document.getElementById('app')
 const columns = document.querySelectorAll('.cardcolumn')
 const pages = document.querySelectorAll('.page')
 
+const ctxMenu = document.querySelector('#ctxMenu')
+const ctxMenuInput = ctxMenu.querySelectorAll('input')
+
+window.addEventListener('resize', () => ctxMenu.style.display = 'none')
+window.addEventListener('mousedown', (e) => {
+	let flag = false
+	ctxMenuInput.forEach((el) => {
+		if(e.target == el)
+			flag = true
+	})
+
+	if(e.target == ctxMenu)
+		flag = true
+		
+	if(!flag)
+		ctxMenu.style.display = 'none'
+})
+
+ctxMenuInput[1].addEventListener('click', () => {
+	data.cards.splice(activeCardIdx, 1)
+	data.Flush()
+	reload()
+	ctxMenu.style.display = 'none'
+})
+
 reload()
 
 function reload()
@@ -50,6 +75,7 @@ function showPanel()
     pages[1].classList.remove('hide')
     pages[1].classList.add('in')
 	pages[0].classList.remove('in')
+	projectOpen = true
 }
 
 function hidePanel()
@@ -60,6 +86,7 @@ function hidePanel()
 	pages[0].classList.remove('out')
     pages[1].classList.add('hide')
     pages[1].classList.remove('in')
+	projectOpen = false
 }
 
 function setShaLen(commitText)

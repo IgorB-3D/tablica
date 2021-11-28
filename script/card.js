@@ -1,19 +1,34 @@
-const ctxMenu = document.querySelector('#ctxMenu')
-
-window.addEventListener('mousedown', (e) => {
-	if(e.button == 0)
-		ctxMenu.style.display = 'none'
-})
-window.addEventListener('resize', () => ctxMenu.style.display = 'none')
+let activeCardIdx = null
 
 class Card
 {
-	constructor()
+	constructor(title, description, sha, columnIndex)
 	{
-		this.title = ''
-		this.description = ''
-		this.sha = ''
-		this.columnIndex = 0
+		if(!title)
+			title = ''
+		if(!description)
+			description = ''
+		if(!sha)
+			sha = ''
+		if(!columnIndex)
+			columnIndex = 0
+		this.title = title
+		this.description = description
+		this.sha = sha
+		this.columnIndex = columnIndex
+	}
+
+	Equals(other)
+	{
+		return this.title === other.title &&
+				this.description === other.description &&
+				this.sha === other.sha &&
+				this.columnIndex === other.columnIndex
+	}
+
+	static Copy(from)
+	{
+		return new Card(from.title, from.description, from.sha, from.columnIndex)
 	}
 
 	static CreateElement(before, def)
@@ -25,25 +40,29 @@ class Card
 			def = new Card()
 			def.columnIndex = getColumnIdx(before.parentNode)
 		
-			let index = data.cards.length
+			index = data.cards.length
 			data.cards[index] = def
 		}
 		else
 			before = columns[def.columnIndex].childNodes[0]
 		
 		for(let i = 0; i < data.cards.length; i++)
-			if(data.cards[index] == def)
+			if(Card.Copy(data.cards[i]).Equals(def))
 				index = i
 
 		let card = document.createElement("div");
 		card.classList.add("panel", "block", "border", "darkfill", "smallpad", "spacetop", 'crd')
 
 		card.addEventListener('contextmenu', (e) => {
-			e.preventDefault()
-			ctxMenu.style.position = 'absolute'
-			ctxMenu.style.display = 'block'
-			ctxMenu.style.left = e.x + 'px'
-			ctxMenu.style.top = e.y + 'px'
+			if(e.target == card)
+			{
+				e.preventDefault()
+				activeCardIdx = index
+				ctxMenu.style.position = 'absolute'
+				ctxMenu.style.display = 'block'
+				ctxMenu.style.left = e.x + 'px'
+				ctxMenu.style.top = e.y + 'px'
+			}
 		})
 
 		let cardTitle = document.createElement("input")

@@ -18,9 +18,8 @@
 			<div>
 				<h1 class="centertext">Tablica</h1>
 				<div class="card border padded block darkfill wideCard">
-					<input type="button" value="Nowy projekt" class="block border fill padded bold wide"
-						onclick="newProject()">
-					<input type="button" value="Otwórz z pliku" class="block clear padded bold wide white">
+					<input type="button" value="Nowy projekt" class="block border fill padded bold wide" onclick="newProject()">
+					<input type="button" value="Otwórz z pliku" class="block clear padded bold wide white" onclick="showLoader()">
 				</div>
 			</div>
 		</div>
@@ -76,6 +75,17 @@
 			</div>
 		</div>
 
+		<div class="full flex center page absolute dim hide" id="importPage">
+			<div class="wideCard border darkfill padded">
+				<p class="white bold marginclear">Import</p>
+				<p class="white sml">
+					Załaduj plik w formacie JSON, w celu wczytania zapisu projektu.
+				</p>
+				<label for="upload" class="fselect">Wybierz plik</label>
+				<input type="file" id="upload">
+			</div>
+		</div>
+
 		<div class="card border darkfill inline hide padsmall" id="ctxMenu">
 			<input type="button" value="Więcej" class="wide white noborder white nobg bold rounded padsmall">
 			<input type="button" value="Usuń" class="wide white noborder red rounded redbg padsmall">
@@ -87,6 +97,7 @@
 	<script src="script/card.js"></script>
 	<script src="script/drag.js"></script>
 	<script src="script/settings.js"></script>
+	<script src="script/loader.js"></script>
 	<script src="script/app.js"></script>
 </body>
 
