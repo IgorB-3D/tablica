@@ -1,5 +1,11 @@
 const ctxMenu = document.querySelector('#ctxMenu')
 
+window.addEventListener('mousedown', (e) => {
+	if(e.button == 0)
+		ctxMenu.style.display = 'none'
+})
+window.addEventListener('resize', () => ctxMenu.style.display = 'none')
+
 class Card
 {
 	constructor()
