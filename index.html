@@ -31,22 +31,22 @@
 				<div class="column">
 					<p class="bold bigtext">Do zrobienia</p>
 					<div class="cardcolumn">
-						<input type="button" value="+" class="spacetop border nobg white round bold smallsquare"
-							onclick="newCard(this)">
+						<input type="button" value="+" class="hoverable spacetop border nobg white round bold smallsquare"
+							onclick="Card.CreateElement(this)">
 					</div>
 				</div>
 				<div class="column space">
 					<p class="bold bigtext">W toku</p>
 					<div class="cardcolumn">
-						<input type="button" value="+" class="spacetop border nobg white round bold smallsquare"
-							onclick="newCard(this)">
+						<input type="button" value="+" class="hoverable spacetop border nobg white round bold smallsquare"
+							onclick="Card.CreateElement(this)">
 					</div>
 				</div>
 				<div class="column space">
 					<p class="bold bigtext">Gotowe</p>
 					<div class="cardcolumn">
-						<input type="button" value="+" class="spacetop border nobg white round bold smallsquare"
-							onclick="newCard(this)">
+						<input type="button" value="+" class="hoverable spacetop border nobg white round bold smallsquare"
+							onclick="Card.CreateElement(this)">
 					</div>
 				</div>
 			</div>
@@ -77,6 +77,7 @@
 		</div>
 	</div>
 
+	<script src="script/github.js"></script>
 	<script src="script/data.js"></script>
 	<script src="script/card.js"></script>
 	<script src="script/drag.js"></script>
