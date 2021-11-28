@@ -28,7 +28,7 @@ class Drag
 		}
 		card.style.position = 'absolute'
 		this.Update()
-		card.classList.add('pop')
+		card.classList.add('transparent')
 	}
 
 	End()
@@ -36,12 +36,13 @@ class Drag
 		if(!this.card)
 			return;
 		if(this.closestColumn)
-		this.closestColumn.prepend(this.card)
+
+		this.closestColumn.insertBefore(this.card, [...this.closestColumn.children].at(-1))
 
 		this.cardDef.columnIndex = getColumnIdx(this.closestColumn)
 
 		this.card.style.position = 'initial'
-		this.card.classList.remove('pop')
+		this.card.classList.remove('transparent')
 		this.card = null
 		data.Flush()
 	}

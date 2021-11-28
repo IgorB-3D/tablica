@@ -1,8 +1,8 @@
 :root {
 	--accent: #3DFFA2;
-	--rnd: 16px;
+	--rnd: 12px;
 	--bg: #1E1E1E;
-	--border: 3px;
+	--border: 2px;
 	font-size: 28px;
 }
 
@@ -23,6 +23,11 @@ input {
 	color: white;
 }
 
+.white::placeholder
+{
+	color: white;
+}
+
 .green {
 	color: var(--accent);
 }
@@ -39,6 +44,26 @@ input {
 .border {
 	border: var(--border) solid var(--accent);
 	border-radius: var(--rnd);
+}
+
+.borderred {
+	border: var(--border) solid #ff3d3d;
+	border-radius: var(--rnd);
+}
+
+.noborder
+{
+	border: none;
+}
+
+.red
+{
+	color: #ff3d3d;
+}
+
+.redbg
+{
+	background: #ff3d3d55;
 }
 
 .fill {
@@ -82,7 +107,7 @@ input {
 
 .crd
 {
-	width: 20vw;
+	width: min(20vw, 300px);
 	overflow: hidden;
 }
 
@@ -262,6 +287,11 @@ input {
 
 .round {
 	border-radius: 500px;
+}
+
+.rounded
+{
+	border-radius: var(--rnd);
 }
 
 .smallsquare {

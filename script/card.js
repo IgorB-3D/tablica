@@ -1,9 +1,11 @@
+const ctxMenu = document.querySelector('#ctxMenu')
+
 class Card
 {
 	constructor()
 	{
-		this.title = 'Nowa karta'
-		this.description = 'Opis karty'
+		this.title = ''
+		this.description = ''
 		this.sha = ''
 		this.columnIndex = 0
 	}
@@ -30,9 +32,18 @@ class Card
 		let card = document.createElement("div");
 		card.classList.add("panel", "block", "border", "darkfill", "smallpad", "spacetop", 'crd')
 
+		card.addEventListener('contextmenu', (e) => {
+			e.preventDefault()
+			ctxMenu.style.position = 'absolute'
+			ctxMenu.style.display = 'block'
+			ctxMenu.style.left = e.x + 'px'
+			ctxMenu.style.top = e.y + 'px'
+		})
+
 		let cardTitle = document.createElement("input")
 		cardTitle.classList.add("clear", "white", "bold", "med", "marginclear", "spacetop", "block")
 		cardTitle.value = def.title
+		cardTitle.placeholder = 'Nazwa karty...'
 		cardTitle.addEventListener('change', () => {
 			data.cards.forEach(x => {
 				if(x == def)
@@ -45,6 +56,7 @@ class Card
 		let cardText = document.createElement("textarea")
 		cardText.classList.add("sml", "card", "marginclear", "spacetop", "fullwidth", "clear", "font", "white")
 		cardText.innerHTML = def.description
+		cardText.placeholder = 'Opis karty...'
 		cardText.addEventListener('change', () => {
 			data.cards.forEach(x => {
 				if(x == def)
@@ -78,6 +90,7 @@ class Card
 		})
 
 		commitText.addEventListener('change', () => {
+			commitUrl.innerText = ''
 			GetCommit(data.repo, commitText.value, (res) => {
 				commitUrl.href = res["html_url"]
 				commitUrl.innerText = res["commit"]["message"].replace(/(\r\n|\n|\r)/gm, "")
