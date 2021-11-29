@@ -128,9 +128,7 @@ class Card
 		})
 
 		if(commitText.value && commitText.value.length != 0)
-		{
 			cmt()
-		}
 
 		commitWrapper.appendChild(commitText)
 		commitWrapper.appendChild(commitUrl)

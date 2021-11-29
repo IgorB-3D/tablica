@@ -63,8 +63,15 @@ class Drag
 
 		for(let i = 0; i < columns.length; i++)
 		{
-			let rect = columns[i].getBoundingClientRect();
-			let dist = Math.abs(cRect.left - rect.left)
+			let input = [...columns[i].children].at(-1)
+			let rect = input.getBoundingClientRect()
+
+			let p1 = {x: cRect.left, y: cRect.top }
+			let p2 = {x: rect.left, y: rect.top }
+
+			let dist = Math.sqrt( (p1.y - p2.y)**2 + (p1.x - p2.x)**2 )
+
+			console.log(dist)
 
 			if(dist < closestDistance)
 			{
