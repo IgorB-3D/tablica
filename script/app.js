@@ -20,7 +20,7 @@ window.addEventListener('mousedown', (e) => {
 		ctxMenu.style.display = 'none'
 })
 
-ctxMenuInput[1].addEventListener('click', () => {
+ctxMenuInput[0].addEventListener('click', () => {
 	data.cards.splice(activeCardIdx, 1)
 	data.Flush()
 	reload()
