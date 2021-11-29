@@ -435,3 +435,15 @@ input[type="file"]
 		transform: translateX(0vw);
 	}
 }
+
+@media only screen and (max-width: 1500px)
+{
+	body
+	{
+		font-size: 16px;
+	}
+	.crd
+	{
+		width: 200px;
+	}
+}

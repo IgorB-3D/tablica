@@ -71,8 +71,6 @@ class Drag
 
 			let dist = Math.sqrt( (p1.y - p2.y)**2 + (p1.x - p2.x)**2 )
 
-			console.log(dist)
-
 			if(dist < closestDistance)
 			{
 				closestDistance = dist
